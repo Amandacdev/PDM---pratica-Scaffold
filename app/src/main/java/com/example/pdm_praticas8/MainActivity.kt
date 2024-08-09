@@ -8,12 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
@@ -21,6 +23,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
@@ -32,6 +35,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -166,10 +170,27 @@ fun ScaffoldAtividade() {
                         containerColor = buttonColor,
                         contentColor = Color.White
                     ),
-                    elevation = ButtonDefaults.elevatedButtonElevation(25.dp)
+                    elevation = ButtonDefaults.elevatedButtonElevation(15.dp)
                 ) {
                     Text("ElevatedButton - Clique para mudar a cor")
                 }
+
+                LargeFloatingActionButton(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier.padding(16.dp)
+                ) {
+                    Row(modifier = Modifier . padding(12.dp)) {
+                        Icon(
+                            Icons.Filled.ShoppingCart,
+                            tint = Color.Red,
+                            contentDescription = "Botão flutuante"
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = "Veja seu carrinho")
+                    }
+
+                }
+                
                 if (showImage) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Image(
