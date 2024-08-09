@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,13 +18,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
@@ -60,6 +67,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import com.google.ai.client.generativeai.type.content
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -75,27 +83,24 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScaffoldAtividade() {
-    var showImage by remember { mutableStateOf(false) }
-    var buttonColor by remember { mutableStateOf(Color(0xFF4B0082)) }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 colors = topAppBarColors(
-                    containerColor = Color(0xFF800080),
+                    containerColor = Color(0xFF6000ef),
                     titleContentColor = Color.White
                 ),
                 title = {
-                    Text("Bem vindo ao aplicativo.")
+                    Text("Jetpack Compose")
                 },
                 navigationIcon = {
                     IconButton(onClick = { /* do something */ }) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            imageVector = Icons.Filled.Menu,
                             contentDescription = "Localized description",
                             tint = Color.White
                         )
@@ -104,7 +109,7 @@ fun ScaffoldAtividade() {
                 actions = {
                     IconButton(onClick = { /* do something */ }) {
                         Icon(
-                            imageVector = Icons.Filled.Menu,
+                            imageVector = Icons.Filled.Search,
                             contentDescription = "Localized description",
                             tint = Color.White
                         )
@@ -114,115 +119,121 @@ fun ScaffoldAtividade() {
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = Color(0xFF800080),
-                actions = {
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            Icons.Filled.Favorite,
-                            contentDescription = "Localized description",
-                            tint = Color.White
-                        )
+                containerColor = Color(0xFF6000ef)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        IconButton(onClick = {}) {
+                            Icon(
+                                imageVector = Icons.Filled.Home,
+                                contentDescription = "Home",
+                                tint = Color.Black
+                            )
+                        }
+                        Text(text = "Home", color = Color.Black)
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        IconButton(onClick = {}) {
+                            Icon(
+                                imageVector = Icons.Filled.AddCircle,
+                                contentDescription = "Create",
+                                tint = Color.Black
+                            )
+                        }
+                        Text(text = "Create", color = Color.Black)
                     }
 
-                    IconButton(onClick = { /* do something */ }) {
-                        Icon(
-                            Icons.Filled.AccountCircle,
-                            contentDescription = "Localized description",
-                            tint = Color.White
-                        )
-                    }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(
-                        onClick = { /* do something */ },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Icon(Icons.Filled.Add, "Localized description")
+                        FloatingActionButton(
+                            onClick = {},
+                            containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                            shape = RoundedCornerShape(25.dp),
+                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                        ) {
+                            Icon(Icons.Filled.Settings, "Localized description")
+                        }
+                        Text(text = "Settings", color = Color.Black)
                     }
                 }
-            )
+            }
         },
         content = { innerPadding ->
-            Column(
+            Box(
                 modifier = Modifier
                     .padding(innerPadding),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                //verticalArrangement = Arrangement.spacedBy(8.dp),
+                //horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     modifier = Modifier.padding(25.dp),
                     text = """
-                        Essa é a atividade para prática de PDM.
+                       List item - 0
+                       
+                       List item - 1
+                       
+                       List item - 2
+                       
+                       List item - 3
+                       
+                       List item - 4
+                       
+                       List item - 5
+                       
+                       List item - 6
+                       
+                       List item - 7
+                       
+                       List item - 8
+                       
+                       List item - 9
                     """.trimIndent(),
                 )
-                Button(
-                    onClick = { showImage = true },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF4B0082),
-                        contentColor = Color.White
-                    )
-                ) {
-                    Text("Clique aqui para exibir imagem.")
-                }
 
-                ElevatedButton(
-                    onClick = {
-                    buttonColor = if (buttonColor == Color(0xFF4B0082)) Color(0xFF008000) else Color(0xFF4B0082)
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = buttonColor,
-                        contentColor = Color.White
-                    ),
-                    elevation = ButtonDefaults.elevatedButtonElevation(15.dp)
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("Clique para mudar a cor")
-                }
-
-                /*
-                LargeFloatingActionButton(
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier.padding(16.dp)
-                ) {
-                    Row(modifier = Modifier . padding(12.dp)) {
-                        Icon(
-                            Icons.Filled.ShoppingCart,
-                            tint = Color.Red,
-                            contentDescription = "Botão flutuante"
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Veja seu carrinho")
+                    Row {
+                        FloatingActionButton(
+                            onClick = {},
+                            containerColor = Color(0xFF008881),
+                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                        ) {
+                            Icon(Icons.Filled.Settings, "Localized description")
+                        }
                     }
-
+                    Row {
+                        FloatingActionButton(
+                            onClick = {},
+                            containerColor = Color(0xFF008881),
+                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ){
+                            Icon(Icons.Filled.Settings, "Localized description")
+                            Text(text = "Navigate", color = Color.White)
+                            }
+                        }
+                    }
                 }
-                */
-
-                OutlinedCard(
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color.LightGray
-                    ),
-                    border = BorderStroke(2.dp,Color.DarkGray),
-                    modifier = Modifier
-                        .size(width = 290.dp, height = 90.dp)
-                ) {
-                    Text(text = "Esse aplicativo está em desenvolvimento.",
-                        modifier = Modifier.padding(16.dp),
-                        textAlign = TextAlign.Center)
-                }
-
-                if (showImage) {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.indonesia_4759317_1280),
-                        contentDescription = "Imagem exibida :)",
-                        modifier = Modifier.size(100.dp)
-                    )
-                }
+                    }
             }
         }
     )
 }
-
 
 @Preview(showBackground = true)
 @Composable
