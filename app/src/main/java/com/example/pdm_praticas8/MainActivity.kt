@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,8 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
@@ -37,6 +40,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -149,7 +153,7 @@ fun ScaffoldAtividade() {
                 Text(
                     modifier = Modifier.padding(25.dp),
                     text = """
-                        Essa é a atividade para prática de scaffold.
+                        Essa é a atividade para prática de PDM.
                     """.trimIndent(),
                 )
                 Button(
@@ -159,7 +163,7 @@ fun ScaffoldAtividade() {
                         contentColor = Color.White
                     )
                 ) {
-                    Text("Button - Clique aqui para exibir imagem.")
+                    Text("Clique aqui para exibir imagem.")
                 }
 
                 ElevatedButton(
@@ -172,9 +176,10 @@ fun ScaffoldAtividade() {
                     ),
                     elevation = ButtonDefaults.elevatedButtonElevation(15.dp)
                 ) {
-                    Text("ElevatedButton - Clique para mudar a cor")
+                    Text("Clique para mudar a cor")
                 }
 
+                /*
                 LargeFloatingActionButton(
                         onClick = { /*TODO*/ },
                         modifier = Modifier.padding(16.dp)
@@ -190,7 +195,21 @@ fun ScaffoldAtividade() {
                     }
 
                 }
-                
+                */
+
+                OutlinedCard(
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.LightGray
+                    ),
+                    border = BorderStroke(2.dp,Color.DarkGray),
+                    modifier = Modifier
+                        .size(width = 290.dp, height = 90.dp)
+                ) {
+                    Text(text = "Esse aplicativo está em desenvolvimento.",
+                        modifier = Modifier.padding(16.dp),
+                        textAlign = TextAlign.Center)
+                }
+
                 if (showImage) {
                     Spacer(modifier = Modifier.height(16.dp))
                     Image(
